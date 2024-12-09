@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: http-sensor
+  namespace: argo-events-new
+spec:
+  dependencies:
+    - name: http-dep
+      eventSourceName: http-events
+      eventName: example-http
+  triggers:
+    - template:
+        name: example-trigger
+        http:
+          url: "http://httpbin-service.argo-events-new.svc.cluster.local"   # Replace with your actual endpoint
+          method: POST
+          payload:
+            contentType: "application/json"
+            body:
+              message: "Received HTTP Event"

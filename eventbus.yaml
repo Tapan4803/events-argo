@@ -1,0 +1,9 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: timer-events
+  namespace: argo-events
+spec:
+  timer:
+    name: timer-5s
+    interval: "5s"  # Trigger event every 5 seconds

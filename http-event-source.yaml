@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: http-events
+  namespace: argo-events-new
+spec:
+  http:
+    example-http:
+      method: POST
+      url: "http://httpbin-service.argo-events-new.svc.cluster.local/post" # Replace with your webhook URL
+      payload:
+        contentType: "application/json"
